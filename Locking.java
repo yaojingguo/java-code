@@ -53,38 +53,38 @@ public class Locking {
       worker.start();
       for (;;);
     } catch (InterruptedException e) {
-        throw new RuntimeException(e); 
+      throw new RuntimeException(e); 
     }
   }
   public static void test_semaphore() {
-      try {
-          final Semaphore s = new Semaphore(1);
-          System.out.println("acquire once");    
-          s.acquire();
-          Thread worker = new Thread() {
-              @Override
-              public void run() {
-                  try {
-                      // release in another thread
-                      System.out.println("releasing in child");    
-                      s.release();
-                      System.out.println("released in child");    
-                  } catch (Throwable e) {
-                      throw new RuntimeException(e);
-                  }
-              }
-          };
-          worker.start();
-          Thread.sleep(50);
-          System.out.println("acquire twice");    
-          s.acquire();
-      } catch (InterruptedException e) {
-          throw new RuntimeException(e);
-      }
+    try {
+      final Semaphore s = new Semaphore(1);
+      System.out.println("acquire once");    
+      s.acquire();
+      Thread worker = new Thread() {
+        @Override
+        public void run() {
+          try {
+            // release in another thread
+            System.out.println("releasing in child");    
+            s.release();
+            System.out.println("released in child");    
+          } catch (Throwable e) {
+            throw new RuntimeException(e);
+          }
+        }
+      };
+      worker.start();
+      Thread.sleep(50);
+      System.out.println("acquire twice");    
+      s.acquire();
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
   }
   public static void main (String [] args) {
-      //test_lock_by_other();
-      //test_RW();
-      test_semaphore();
+    //test_lock_by_other();
+    //test_RW();
+    test_semaphore();
   }
 }
