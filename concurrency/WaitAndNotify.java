@@ -1,3 +1,5 @@
+package concurrency;
+
 public class WaitAndNotify {
    public static void main (String [] args) {
      Object monitor = new Object();
@@ -37,22 +39,6 @@ class Receiver extends Thread {
        */
       Util.wait(monitor);
       System.out.println("wakened");  
-    }
-  }
-}
-class Util {
-  public static void sleep(int mills) {
-    try {
-      Thread.sleep(mills);
-    } catch (InterruptedException ex) {
-      throw new RuntimeException(ex);
-    }
-  }
-  public static void wait(Object monitor) {
-    try {
-      monitor.wait();
-    } catch (InterruptedException ex) {
-      throw new RuntimeException(ex);
     }
   }
 }

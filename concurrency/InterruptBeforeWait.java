@@ -1,3 +1,5 @@
+package concurrency;
+
 public class InterruptBeforeWait {  
   public static void test1() {
     Runner r = new Runner();  
@@ -15,8 +17,8 @@ public class InterruptBeforeWait {
     System.out.println("interrupted");    
   }
   public static void main (String [] args) {  
-    //test1();
-    test2();
+    test1();
+    // test2();
   }  
 }  
 
@@ -27,11 +29,7 @@ class Runner extends Thread {
       System.out.println("NO: " + i);    
     System.out.println("interruption status: " + isInterrupted());  
     synchronized (this) {  
-      try {  
-        wait();  
-      } catch (InterruptedException ie) {  
-        ie.printStackTrace();  
-      }  
+      Util.wait(this);  
     }  
   }  
 }  
