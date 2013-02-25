@@ -15,4 +15,18 @@ public class Util {
       throw new RuntimeException(ex);
     }
   }
+  public static void sleep(long mills) {
+    try {
+      Thread.sleep(mills);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
+  public static void join(Thread t) {
+    try {
+      t.join();
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }
