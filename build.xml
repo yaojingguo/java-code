@@ -1,0 +1,5 @@
+<project name="">
+    <property name="src.dir" value=""/>
+    <target name="compile">
+    </target>
+</project>
