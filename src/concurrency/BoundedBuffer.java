@@ -1,5 +1,8 @@
 package concurrency;
-
+/**
+ * Bounded buffer as specified by the paper "Monitors: An Operating System
+ * Structuring Concept".
+ */
 public class BoundedBuffer {
     private static final int N = 3;
     private int count;
@@ -38,7 +41,7 @@ public class BoundedBuffer {
             while (count == N) 
                 Util.wait(nonFull);
             buffer[lastPosition % N] = item;
-            lastPosition++;
+            lastPosition++; // Integer overflow does not matter.
             count++;
             nonEmpty.notifyAll();
         }
