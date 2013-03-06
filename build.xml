@@ -1,5 +1,16 @@
-<project name="">
-    <property name="src.dir" value=""/>
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="java-code" default="compile">
+    <property name="src.dir" value="${basedir}/src"/>
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="compile.debug" value="true"/>
+    <property name="sourceversion" value="1.7"/>
     <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeAntRuntime="no"
+            debug="${compile.debug}" source="${sourceversion}">
+        </javac>
+    </target>
+    <target name="clean">
+        <delete dir="${build.dir}"/>
     </target>
 </project>
