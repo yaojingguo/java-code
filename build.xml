@@ -1,16 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="java-code" default="compile">
-    <property name="src.dir" value="${basedir}/src"/>
-    <property name="build.dir" value="${basedir}/build"/>
+    <property name="src" value="${basedir}/src"/>
+    <property name="testd" value="${basedir}/test"/>
+    <property name="build" value="${basedir}/build"/>
+    <property name="build.src" value="${build}/src"/>
+    <property name="build.test" value="${build}/test"/>
+    <property name="lib" value="${basedir}/lib"/>
     <property name="compile.debug" value="true"/>
     <property name="sourceversion" value="1.7"/>
-    <target name="compile">
-        <mkdir dir="${build.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${build.dir}" includeAntRuntime="no"
-            debug="${compile.debug}" source="${sourceversion}">
-        </javac>
+    <property name="showoutput" value="no"/>
+
+    <path id="classpath.base">
+        <pathelement location="${build.src}"/>
+    </path>
+
+    <path id="classpath.test">
+        <path refid="classpath.base"/>
+        <pathelement location="${build.test}"/>
+        <pathelement location="${lib}/junit-4.5.jar"/>
+    </path>
+    <!-- Common macro for running junit tests in both the test and runtest targets -->
+    <macrodef name="RunJunit">
+        <attribute name="haltonfailure" default="yes" />
+        <element name="testspecification" implicit="yes" />
+        <sequential>
+            <junit printsummary="on" fork="yes" 
+                haltonfailure="@{haltonfailure}" maxmemory="128M"
+                failureproperty="junit.failed" showoutput="${showoutput}">
+                <classpath refid="classpath.test" />
+                <formatter type="plain" usefile="false"/>
+                <assertions><enable/></assertions>
+                <testspecification/>
+            </junit>
+        </sequential>
+    </macrodef>
+
+    <!-- Common macro for compiling Java source -->
+    <macrodef name="Compile">
+        <attribute name="srcdir"/>
+        <attribute name="destdir"/>
+        <element name="compileoptions" implicit="true" optional="true"/>
+        <sequential>
+            <mkdir dir="@{destdir}"/>
+            <!-- avoids needing ant clean when changing interfaces -->
+            <!--<depend srcdir="${srcdir}" destdir="${destdir}" cache="${depcache}"/>-->
+            <javac srcdir="@{srcdir}" destdir="@{destdir}" includeAntRuntime="no"
+                    debug="${compile.debug}" source="${sourceversion}">
+                <compilerarg value="-Xlint:unchecked" />
+                <compileoptions/>
+            </javac>
+        </sequential>
+    </macrodef>
+
+    <target name="compile" description="Compile code">
+        <Compile srcdir="${src}" destdir="${build.src}">
+            <classpath refid="classpath.base"/>
+        </Compile>
     </target>
+
+    <target name="testcompile" depends="compile" description="Compile all unit tests">
+        <Compile srcdir="${testd}" destdir="${build.test}">
+            <classpath refid="classpath.test"/>
+        </Compile>
+    </target>
+    <target name="test" depends="testcompile" description="Run all unit tests">
+        <RunJunit>
+            <batchtest>
+                <fileset dir="${build.test}">
+                    <include name="**/*Test.class"/>
+                    <exclude name="**/*$*.class"/>
+                </fileset>
+            </batchtest>
+        </RunJunit>
+    </target>
+    <target name="runtest" depends="testcompile"
+            description="Runs the test you specify on the command line with -Dtest=">
+        <!-- Check for -Dtest command line argument -->
+        <fail unless="test" message="You must run this target with -Dtest=TestName"/>
+
+        <!-- Check if the class exists -->
+        <!--<available property="test.exists" classname="simpledb.${test}">-->
+        <!--        <classpath refid="classpath.test" />-->
+        <!--</available>-->
+        <!--<fail unless="test.exists" message="Test ${test} could not be found"/>-->
+
+        <RunJunit>
+            <test name="simpledb.${test}" unless="methods"/>
+            <test name="simpledb.${test}" methods="${methods}" if="methods"/>
+        </RunJunit>
+    </target>
+
+
     <target name="clean">
-        <delete dir="${build.dir}"/>
+        <delete dir="${build}"/>
     </target>
 </project>
