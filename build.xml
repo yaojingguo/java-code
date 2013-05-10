@@ -25,7 +25,7 @@
         <element name="testspecification" implicit="yes" />
         <sequential>
             <junit printsummary="on" fork="yes" 
-                haltonfailure="@{haltonfailure}" maxmemory="128M"
+                haltonfailure="@{haltonfailure}" 
                 failureproperty="junit.failed" showoutput="${showoutput}">
                 <classpath refid="classpath.test" />
                 <formatter type="plain" usefile="false"/>
@@ -85,8 +85,8 @@
         <!--<fail unless="test.exists" message="Test ${test} could not be found"/>-->
 
         <RunJunit>
-            <test name="simpledb.${test}" unless="methods"/>
-            <test name="simpledb.${test}" methods="${methods}" if="methods"/>
+            <test name="${test}" unless="methods"/>
+            <test name="${test}" methods="${methods}" if="methods"/>
         </RunJunit>
     </target>
 

@@ -7,11 +7,19 @@ import org.junit.After;
 
 public class KSubsetsTest {
   @Test
-  public void testGenerate() {
-    Integer array[] = new Integer[20];
-    for (int i = 0; i < array.length; i++)
-      array[i] = i;
-    KSubsets<Integer> ks = new KSubsets<Integer>(array, 10);
+  public void testSmall() {
+    verify(3, 0);
+    verify(3, 1);
+    verify(3, 2);
+    verify(3, 3);
+  }
+  @Test
+  public void testBig() {
+    verify(20, 10);
+  }
+  private void verify(int n, int k) {
+    System.out.printf("C(%d, %d)\n", n, k);  
+    KSubsets<Integer> ks = new KSubsets<Integer>(n, k);
     ks.generate();
   }
 }
