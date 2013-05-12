@@ -14,6 +14,12 @@ public class KSubsetsTest {
     verify(3, 3);
   }
   @Test
+  public void testBigN() {
+    verify(100, 1);
+    verify(100, 99);
+  }
+
+  @Test
   public void testBig() {
     verify(20, 10);
   }
