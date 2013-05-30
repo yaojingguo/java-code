@@ -1,4 +1,6 @@
 #!/bin/bash
 
 ant compile
-java -cp build concurrency.$1
+if [ $? -eq 0 ]; then
+  java -cp build/src concurrency.$1
+fi
