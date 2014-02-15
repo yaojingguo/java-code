@@ -4,7 +4,14 @@ import java.util.concurrent.*;
 // Run this class. Use the following command to check thread state:
 //   ps -L -O stat,lwp,nlwp --pid 
 // During looping 3 W threads are in Rl+ state. When they are sleeping, they are
-// in Sl+ state.
+// in Sl+ state. R means running or runnable. S means interruptible sleep.
+//
+// operation  state
+// ---------------
+// loop        Rl+
+// synchonized Sl+
+// wait        Sl+
+// 
 public class ThreadStateCheck {
     static class W extends Thread {
         CountDownLatch latch;
@@ -16,7 +23,7 @@ public class ThreadStateCheck {
             long i;
             for (i = 0; i < 10L * 1000L * 1000L * 1000L; i++)
                 ;
-            System.out.println("Sleeping..." + i);    
+            System.out.println("Sleeping " + i + "...");    
             Util.sleep(20 * 1000);
             latch.countDown();
         }
