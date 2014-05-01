@@ -7,7 +7,6 @@ public class SynchronousQueueUsage {
   public static void main (String [] args) {
     final SynchronousQueue<Integer> q = new SynchronousQueue<Integer>();
     Thread putter = new Thread() {
-      @Override
       public void run() {
         try {
           Thread.sleep(10 * 1000);
@@ -19,7 +18,6 @@ public class SynchronousQueueUsage {
       }
     };
     Thread taker = new Thread() {
-      @Override
       public void run() {
         try {
           q.take();
