@@ -9,41 +9,36 @@ public class BoundedBuffer {
     private int lastPosition;
     private int buffer[];
 
-    /*
-     * In Java, there is no way to associate 1 lock with 2 different conditions.  
-     * So nonFull and nonEmpty are the same object.
-     */
-    private Object nonFull;
-    private Object nonEmpty;
+    private Object monitor;
 
     public BoundedBuffer() {
         count = 0;
         lastPosition = 0;
         buffer = new int[N];
-        nonFull = new Object();
-        nonEmpty = nonFull;
+        monitor = new Object();
+        monitor = monitor;
     }
 
     public int remove() {
         int item;
-        synchronized (nonEmpty) {
+        synchronized (monitor) {
             while (count == 0) 
-                Util.wait(nonEmpty);
+                Util.wait(monitor);
             item = buffer[(lastPosition - count) % N];
             count--;
-            nonFull.notifyAll();
+            monitor.notifyAll();
         }
         return item;
     }
 
     public void append(int item) {
-        synchronized (nonFull) {
+        synchronized (monitor) {
             while (count == N) 
-                Util.wait(nonFull);
+                Util.wait(monitor);
             buffer[lastPosition % N] = item;
             lastPosition++; // Integer overflow does not matter.
             count++;
-            nonEmpty.notifyAll();
+            monitor.notifyAll();
         }
     }
 

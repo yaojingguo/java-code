@@ -4,7 +4,7 @@ package concurrency;
 import java.util.concurrent.*;
 
 public class SynchronousQueueUsage {
-  public static void main (String [] args) {
+  static void testPutAndTake() {
     final SynchronousQueue<Integer> q = new SynchronousQueue<Integer>();
     Thread putter = new Thread() {
       public void run() {
@@ -29,5 +29,15 @@ public class SynchronousQueueUsage {
     };
     putter.start();
     taker.start();
+  }
+
+  static void testOffer() {
+    SynchronousQueue<Integer> q = new SynchronousQueue<Integer>();
+    System.out.println(q.offer(10));  
+  }
+
+  public static void main (String [] args) {
+    testOffer();
+    testPutAndTake();
   }
 }
