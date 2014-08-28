@@ -35,7 +35,7 @@ public class FinalUsage {
       t.start();
       Util.join(t);
       field1 = 10;
-      System.out.println("before assignment: " + field1);
+      System.out.println("after assignment: " + field1);
     }
   }
 
