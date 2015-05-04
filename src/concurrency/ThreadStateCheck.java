@@ -1,6 +1,7 @@
 package concurrency;
 
 import java.util.concurrent.*;
+
 // Run this class. Use the following command to check thread state:
 //   ps -L -O stat,lwp,nlwp --pid 
 // During looping 3 W threads are in Rl+ state. When they are sleeping, they are
@@ -77,6 +78,6 @@ public class ThreadStateCheck {
     }
 
     public static void main (String [] args) throws InterruptedException {
-      test3();
+      test1();
     }
 }
