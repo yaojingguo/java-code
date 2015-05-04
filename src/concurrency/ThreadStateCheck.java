@@ -7,12 +7,15 @@ import java.util.concurrent.*;
 // During looping 3 W threads are in Rl+ state. When they are sleeping, they are
 // in Sl+ state. R means running or runnable. S means interruptible sleep.
 //
-// operation  state
+// operation    state
 // ---------------
-// loop        Rl+
-// synchonized Sl+
-// wait        Sl+
-// 
+// loop         Rl+
+// synchronized Sl+
+// wait         Sl+
+//
+// If a thread is blocked with synchronized or waiting on a monitor, it is in
+// the same thread state.
+//
 public class ThreadStateCheck {
     static class W extends Thread {
         CountDownLatch latch;
@@ -78,6 +81,6 @@ public class ThreadStateCheck {
     }
 
     public static void main (String [] args) throws InterruptedException {
-      test2();
+      test3();
     }
 }
