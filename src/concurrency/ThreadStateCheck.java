@@ -3,7 +3,7 @@ package concurrency;
 import java.util.concurrent.*;
 
 // Run this class. Use the following command to check thread state:
-//   ps -L -O stat,lwp,nlwp --pid 
+//   ps -L -O stat,lwp,nlwp --pid `ps -ef | grep java | grep -v grep | awk '{print $2}'` 
 // During looping 3 W threads are in Rl+ state. When they are sleeping, they are
 // in Sl+ state. R means running or runnable. S means interruptible sleep.
 //
@@ -22,7 +22,7 @@ public class ThreadStateCheck {
         public void run() {
             System.out.println("looping...");    
             long i;
-            for (i = 0; i < 10L * 1000L * 1000L * 1000L; i++)
+            for (i = 0; i < 100L * 1000L * 1000L * 1000L; i++)
                 ;
             System.out.println("Sleeping " + i + "...");    
             Util.sleep(20 * 1000);
@@ -52,7 +52,7 @@ public class ThreadStateCheck {
       };
       synchronized(lock) {
         t.start();
-        Thread.sleep(300 * 1000);
+        Thread.sleep(60 * 1000);
       }
     }
     static void test3() throws InterruptedException {
@@ -78,6 +78,6 @@ public class ThreadStateCheck {
     }
 
     public static void main (String [] args) throws InterruptedException {
-      test1();
+      test2();
     }
 }
