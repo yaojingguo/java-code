@@ -10,6 +10,7 @@ dependencies {
   compile 'com.google.guava:guava:18.0'
   testCompile 'junit:junit:4.12'
   testCompile 'com.google.truth:truth:0.27'
+  testCompile 'org.unitils:unitils-core:3.4.2'
 }
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
