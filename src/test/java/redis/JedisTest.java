@@ -1,16 +1,20 @@
 package redis;
 
+import static com.google.common.truth.Truth.*;
+
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
-import static com.google.common.truth.Truth.*;
+import redis.clients.jedis.JedisSentinelPool;
+import redis.clients.util.Pool;
 
 @SuppressWarnings("all")
 public class JedisTest {
@@ -38,6 +42,10 @@ public class JedisTest {
 
   @Test
   public void second() {
+    verifyPool(pool);
+  }
+
+  private void verifyPool(Pool<Jedis> pool) {
     try (Jedis jedis = pool.getResource()) {
       jedis.set("foo", "bar");
       String foobar = jedis.get("foo");
@@ -48,5 +56,14 @@ public class JedisTest {
       assertThat(sose).containsExactly("car", "bike");
     }
   }
-
+  
+  @Test
+  public void third() {
+    Set sentinels = new HashSet();
+    sentinels.add(new HostAndPort("10.202.80.117", 17500).toString());
+    sentinels.add(new HostAndPort("10.202.80.118", 17500).toString());
+    JedisSentinelPool sentinelPool = new JedisSentinelPool("master7500", sentinels, "zt1116@ops");
+    System.out.println("Current master: " + sentinelPool.getCurrentHostMaster().toString());
+    verifyPool(sentinelPool);
+  }
 }
