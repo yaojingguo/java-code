@@ -48,14 +48,4 @@ public class FloatTest {
     System.out.printf("%f\n", f);
     System.out.printf("%.14f\n", f);
   }
-  
-  @Test
-  public void testVarArgs() {
-    func("one", "two");
-  }
-  
-  private void func(String... names) {
-    for (int i = 0; i < names.length; i++)
-      System.out.printf("%d: %s", i, names[i]);
-  }
 }
