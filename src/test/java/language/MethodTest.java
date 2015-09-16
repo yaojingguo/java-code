@@ -42,4 +42,13 @@ public class MethodTest {
   private void setMap(Map map) {
     map.put("name", "yaojingguo");
   }
+  
+  @Test
+  public void testCastToString() {
+//    Object d = new Double(1.1);
+//    String s = (String) d;
+//    System.out.println(s);
+    String s = "abc";
+    System.out.println(s.toString());
+  }
 }
