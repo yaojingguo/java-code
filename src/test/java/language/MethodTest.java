@@ -48,7 +48,25 @@ public class MethodTest {
 //    Object d = new Double(1.1);
 //    String s = (String) d;
 //    System.out.println(s);
-    String s = "abc";
-    System.out.println(s.toString());
+//    String s = "abc";
+//    System.out.println(s.toString());
+//    System.out.println(null instanceof String);
+//    Integer a = (Integer) null;
+    String s = "1";
+    Object o = s;
+    Double num = (Double) o;
+  }
+  
+  @Test
+  public void testIntegerEquals() {
+    Integer i1 = new Integer(1);
+    Integer i2 = new Integer(1);
+    System.out.println(i1 == i2);
+    System.out.println(i1.equals(i2));
+  }
+  
+  @Test
+  public void testStringHashCode() {
+    System.out.println("Foo".hashCode());
   }
 }
