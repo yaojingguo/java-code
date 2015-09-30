@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
   compile 'com.google.guava:guava:18.0'
+  compile 'org.javassist:javassist:3.20.0-GA'
   compile 'redis.clients:jedis:2.7.2'
    
   testCompile 'junit:junit:4.12'
