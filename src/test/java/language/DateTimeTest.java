@@ -10,6 +10,7 @@ import org.junit.Test;
 
 public class DateTimeTest {
 
+  @SuppressWarnings("all")
   @Test
   public void testLocalDate() {
     LocalDate now = LocalDate.now();
@@ -46,6 +47,7 @@ public class DateTimeTest {
     System.out.println("b end");
   }
 
+  @SuppressWarnings("unused")
   private static void c() {
     System.out.println("c begin");
     if (true) throw new RuntimeException();
