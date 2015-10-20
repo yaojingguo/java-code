@@ -3,8 +3,6 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 
-
-
 public class Test {
   @SuppressWarnings("unchecked")
   public static void main(String[] args) throws Exception {
