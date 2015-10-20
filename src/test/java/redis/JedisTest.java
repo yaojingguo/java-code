@@ -66,4 +66,25 @@ public class JedisTest {
     System.out.println("Current master: " + sentinelPool.getCurrentHostMaster().toString());
     verifyPool(sentinelPool);
   }
+  
+  private static void verifyPool2(Pool<Jedis> pool) {
+    try (Jedis jedis = pool.getResource()) {
+      jedis.set("foo", "bar");
+      String foobar = jedis.get("foo");
+      assertThat(foobar).isEqualTo("bar");
+      
+      jedis.zadd("sose", 0, "car");
+      jedis.zadd("sose", 0, "bike");
+      Set<String> sose = jedis.zrange("sose", 0, -1);
+      assertThat(sose).containsExactly("car", "bike");
+    }
+  }
+  
+  public static void main(String[] args) {
+    Set sentinels = new HashSet();
+    sentinels.add(new HostAndPort("127.0.0.1", 26379).toString());
+    JedisSentinelPool sentinelPool = new JedisSentinelPool("mymaster", sentinels);
+    System.out.println("Current master: " + sentinelPool.getCurrentHostMaster().toString());
+    verifyPool2(sentinelPool);
+  }
 }
