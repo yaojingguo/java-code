@@ -69,4 +69,11 @@ public class MethodTest {
   public void testStringHashCode() {
     System.out.println("Foo".hashCode());
   }
+  
+  @Test
+  public void useNull() {
+    func(null);
+  }
+  
+  private void func(int id) {}
 }
