@@ -45,7 +45,7 @@ public class JedisTest {
     verifyPool(pool);
   }
 
-  private void verifyPool(Pool<Jedis> pool) {
+  public static void verifyPool(Pool<Jedis> pool) {
     try (Jedis jedis = pool.getResource()) {
       jedis.set("foo", "bar");
       String foobar = jedis.get("foo");
