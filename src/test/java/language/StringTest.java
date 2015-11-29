@@ -2,6 +2,7 @@ package language;
 
 import static com.google.common.truth.Truth.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,4 +25,9 @@ public class StringTest {
     System.out.println(msg);
   }
 
+  
+  @Test
+  public void testCharsetName() {
+    assertThat(StandardCharsets.UTF_8.name()).isEqualTo("UTF-8");
+  }
 }
