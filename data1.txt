@@ -1,3 +1,4 @@
 abc
 issue-line
 fix line
+master line
