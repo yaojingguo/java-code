@@ -56,7 +56,7 @@ public class JedisTest {
       assertThat(sose).containsExactly("car", "bike");
     }
   }
-  
+
   @Test
   public void third() {
     Set sentinels = new HashSet();
@@ -66,12 +66,28 @@ public class JedisTest {
     System.out.println("Current master: " + sentinelPool.getCurrentHostMaster().toString());
     verifyPool(sentinelPool);
   }
-  
-  public static void main(String[] args) {
+
+
+  @Test
+  public void testFailOver() {
     Set sentinels = new HashSet();
     sentinels.add(new HostAndPort("127.0.0.1", 26379).toString());
     JedisSentinelPool sentinelPool = new JedisSentinelPool("mymaster", sentinels);
-    System.out.println("Current master: " + sentinelPool.getCurrentHostMaster().toString());
+    System.out.println("Current master: " + getMaster(sentinelPool));
     verifyPool(sentinelPool);
+  }
+
+  private void handleFailOver(JedisSentinelPool pool) {
+    for (;;) {
+      try {
+        verifyPool(pool);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  private String getMaster(JedisSentinelPool pool) {
+    return pool.getCurrentHostMaster().toString();
   }
 }
