@@ -14,6 +14,7 @@ class One implements Closeable {
   }
 }
 
+
 class Two implements Closeable {
   @Override
   public void close() throws IOException {
@@ -21,12 +22,26 @@ class Two implements Closeable {
   }
 }
 
+
 public class TryTest {
 
   @Test
   public void testTry() throws IOException {
     try (One one = new One(); Two two = new Two();) {
     }
+  }
+
+  @Test
+  public void testFinally() {
+    try {
+      foo();
+    } finally {
+      System.out.println("finally");
+    }
+  }
+
+  private void foo() {
+    throw new RuntimeException();
   }
 
 }
