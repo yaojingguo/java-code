@@ -47,12 +47,15 @@ public class JedisTest {
 
   public static void verifyPool(Pool<Jedis> pool) {
     try (Jedis jedis = pool.getResource()) {
-      jedis.set("foo", "bar");
-      String foobar = jedis.get("foo");
+      String key1 = "XXX-foo";
+      jedis.set(key1, "bar");
+      String foobar = jedis.get(key1);
       assertThat(foobar).isEqualTo("bar");
-      jedis.zadd("sose", 0, "car");
-      jedis.zadd("sose", 0, "bike");
-      Set<String> sose = jedis.zrange("sose", 0, -1);
+
+      String key2 = "XXX-sose";
+      jedis.zadd(key2, 0, "car");
+      jedis.zadd(key2, 0, "bike");
+      Set<String> sose = jedis.zrange(key2, 0, -1);
       assertThat(sose).containsExactly("car", "bike");
     }
   }

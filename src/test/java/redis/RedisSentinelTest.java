@@ -8,6 +8,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisSentinelPool;
 
 
@@ -30,10 +31,8 @@ public class RedisSentinelTest {
 
   @Test
   public void testFailOver() {
-    Set sentinels = new HashSet();
-    sentinels.add(new HostAndPort("127.0.0.1", 26379).toString());
-    JedisSentinelPool pool = new JedisSentinelPool("mymaster", sentinels);
-    handleFailOver(pool);
+//    handleFailOver(localSentinel());
+    handleFailOver(prodSentinel());
   }
 
   private void handleFailOver(JedisSentinelPool pool) {
@@ -47,6 +46,29 @@ public class RedisSentinelTest {
         e.printStackTrace();
       }
     }
+  }
+
+  private JedisSentinelPool localSentinel() {
+    Set sentinels = new HashSet();
+    sentinels.add(new HostAndPort("127.0.0.1", 26379).toString());
+    JedisSentinelPool pool = new JedisSentinelPool("mymaster", sentinels);
+    return pool;
+  }
+
+  private JedisSentinelPool prodSentinel() {
+    Set sentinels = new HashSet();
+    sentinels.add(new HostAndPort("172.19.3.10", 17610).toString());
+    sentinels.add(new HostAndPort("172.19.3.14", 17610).toString());
+    sentinels.add(new HostAndPort("172.19.3.15", 17610).toString());
+    JedisPoolConfig poolCfg = new JedisPoolConfig();
+
+    poolCfg.setMaxIdle(8);
+    poolCfg.setMinIdle(0);
+    poolCfg.setMaxTotal(8);
+    poolCfg.setMaxWaitMillis(-1);
+
+    JedisSentinelPool pool = new JedisSentinelPool("master7610", sentinels, poolCfg, "wx@1116@x89i");
+    return pool;
   }
 
   private String getMaster(JedisSentinelPool pool) {
