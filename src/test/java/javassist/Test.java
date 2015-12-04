@@ -1,7 +1,4 @@
 package javassist;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtMethod;
 
 public class Test {
   @SuppressWarnings("unchecked")

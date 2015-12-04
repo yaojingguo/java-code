@@ -1,9 +1,10 @@
 package algorithm;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
 
-import static algorithm.BST.*;
+import org.junit.Test;
+
+import algorithm.BST.Node;
 
 public class BSTTest {
   @Test

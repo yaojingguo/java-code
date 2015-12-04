@@ -1,9 +1,6 @@
 package algorithm;
 
 import org.junit.Test;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.After;
 
 public class KSubsetsTest {
   @Test

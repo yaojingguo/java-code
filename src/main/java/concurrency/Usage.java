@@ -1,8 +1,10 @@
 package concurrency;
 
-import java.util.concurrent.*;
-import java.util.concurrent.locks.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Usage {
   // A reader can't acquire the write lock

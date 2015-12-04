@@ -1,6 +1,6 @@
 package concurrency;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
 
 // Run this class. Use the following command to check thread state:
 //   ps -L -O stat,lwp,nlwp --pid `ps -ef | grep java | grep -v grep | awk '{print $2}'` 

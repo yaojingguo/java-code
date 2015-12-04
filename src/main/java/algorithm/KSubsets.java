@@ -1,6 +1,6 @@
 package algorithm;
 
-import java.util.*;
+import java.util.BitSet;
 
 public class KSubsets<E> {
   private int n;

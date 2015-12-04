@@ -1,7 +1,7 @@
 package concurrency;
 
-import java.util.concurrent.locks.*;
-import java.util.concurrent.*;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
 
 class RW {
   private int i = 0;

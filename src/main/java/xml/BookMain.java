@@ -10,9 +10,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import xml.Book;
-import xml.Bookstore;
-
 public class BookMain {
 
   private static final String BOOKSTORE_XML = "./bookstore-jaxb.xml";

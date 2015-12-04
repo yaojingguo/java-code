@@ -1,7 +1,7 @@
 
 package concurrency;
 
-import java.util.concurrent.*;
+import java.util.concurrent.SynchronousQueue;
 
 public class SynchronousQueueUsage {
   static void testPutAndTake() {

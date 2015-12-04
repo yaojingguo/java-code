@@ -1,6 +1,7 @@
 package concurrency;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 class Item {
   @Override
