@@ -8,6 +8,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisSentinelPool;
 
@@ -33,6 +34,11 @@ public class RedisSentinelTest {
   public void testFailOver() {
 //    handleFailOver(localSentinel());
     handleFailOver(prodSentinel());
+  }
+  
+  @Test
+  public void testSentinelCommands() {
+
   }
 
   private void handleFailOver(JedisSentinelPool pool) {

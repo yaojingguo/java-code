@@ -14,6 +14,8 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisSentinelPool;
+import redis.clients.jedis.Response;
+import redis.clients.jedis.Transaction;
 import redis.clients.util.Pool;
 
 @SuppressWarnings("all")
@@ -34,10 +36,36 @@ public class JedisTest {
 
   @Test
   public void testJedis() {
-    Jedis jedis = new Jedis(host);
+    Jedis jedis = jedis();
     jedis.set("foo", "bar");
     String value = jedis.get("foo");
     assertThat(value).isEqualTo("bar");
+  }
+
+  @Test
+  public void testTransaction() {
+    try (Jedis j = jedis();) {
+      Transaction t = jedis().multi();
+      String bar = "bar";
+      t.set("fool", bar);
+      Response<String> result1 = t.get("fool");
+
+      t.zadd("foo", 1, "barowitch");
+      t.zadd("foo", 0, "barinsky");
+      t.zadd("foo", 0, "barikoviev");
+      Response<Set<String>> sose = t.zrange("foo", 0, -1);
+      t.exec();
+
+      String foolbar = result1.get();
+      assertThat(foolbar).isEqualTo(bar);
+      assertThat(sose.get().size()).isEqualTo(3);
+    }
+  }
+
+
+  private Jedis jedis() {
+    Jedis jedis = new Jedis(host);
+    return jedis;
   }
 
   @Test
