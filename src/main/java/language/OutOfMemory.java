@@ -1,3 +1,4 @@
+package language;
 // Use `java -XshowSettings:all` to show heap size settings 
 public class OutOfMemory {
   public static void main(String[] args) {
