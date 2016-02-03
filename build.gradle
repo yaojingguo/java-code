@@ -3,6 +3,9 @@ apply plugin: 'eclipse'
 
 repositories {
   mavenLocal()
+  maven {
+    url "http://maven.oschina.net/content/groups/public/"
+  }
   mavenCentral()
   jcenter()
 }
