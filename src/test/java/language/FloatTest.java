@@ -48,4 +48,13 @@ public class FloatTest {
     System.out.printf("%f\n", f);
     System.out.printf("%.14f\n", f);
   }
+  
+  @Test
+  public void testIEEE754() {
+    long bits = Double.doubleToLongBits(0.1);
+    System.out.printf("%x\n", bits);
+    System.out.printf("%x\n", 2576980378L);
+    System.out.printf("%x\n", 1069128089L);
+  }
+  
 }
