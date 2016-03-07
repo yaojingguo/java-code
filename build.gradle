@@ -31,3 +31,7 @@ dependencies {
 }
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+eclipse.classpath {
+  defaultOutputDir = file('build-eclipse')
+}
