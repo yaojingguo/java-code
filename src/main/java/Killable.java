@@ -1,3 +1,14 @@
+/*
+
+SIGINT        2       Term    Interrupt from keyboard
+SIGKILL       9       Term    Kill signal
+SIGTERM      15       Term    Termination signal
+
+
+ShutdownHook can catch SIGINT and SIGTERM. CTRL-C send SIGINT signal.
+*/
+
+
 public class Killable {
   private static final ShutdownHook shutdownHook = new ShutdownHook();
 
