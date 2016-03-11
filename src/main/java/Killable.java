@@ -7,8 +7,6 @@ SIGTERM      15       Term    Termination signal
 
 ShutdownHook can catch SIGINT and SIGTERM. CTRL-C send SIGINT signal.
 */
-
-
 public class Killable {
   private static final ShutdownHook shutdownHook = new ShutdownHook();
 
