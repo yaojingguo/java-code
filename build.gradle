@@ -35,3 +35,5 @@ dependencies {
 eclipse.classpath {
   defaultOutputDir = file('build-eclipse')
 }
+
+test.testLogging.showStandardStreams = true

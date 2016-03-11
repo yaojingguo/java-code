@@ -11,7 +11,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.junit.Test;
 
-public class ProducerUsage {
+public class ProducerTest {
 
   public static String topic = "apiTopic";
 
@@ -27,7 +27,7 @@ public class ProducerUsage {
   @Test
   public void testSend() throws Exception {
     try (KafkaProducer<String, String> kp = createProducer();) {
-      ProducerRecord<String, String> record = new ProducerRecord<>(topic, "key1", "value9");
+      ProducerRecord<String, String> record = new ProducerRecord<>(topic, "key1", "value70");
       Future<RecordMetadata> future = kp.send(record);
       System.out.println("writting...");
       future.get();
