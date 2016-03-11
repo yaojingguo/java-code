@@ -16,9 +16,7 @@ public class ConsumerLoop implements Runnable {
   private final List<String> topics;
   private final int id;
 
-  public ConsumerLoop(int id,
-                      String groupId, 
-                      List<String> topics) {
+  public ConsumerLoop(int id, String groupId, List<String> topics) {
     this.id = id;
     this.topics = topics;
     Properties props = new Properties();
@@ -28,12 +26,11 @@ public class ConsumerLoop implements Runnable {
     props.put("value.deserializer", StringDeserializer.class.getName());
     this.consumer = new KafkaConsumer<>(props);
   }
- 
+
   @Override
   public void run() {
     try {
       consumer.subscribe(topics);
-
       while (true) {
         ConsumerRecords<String, String> records = consumer.poll(Long.MAX_VALUE);
         for (ConsumerRecord<String, String> record : records) {
@@ -45,7 +42,7 @@ public class ConsumerLoop implements Runnable {
         }
       }
     } catch (WakeupException e) {
-      // ignore for shutdown 
+      // ignore for shutdown
     } finally {
       consumer.close();
     }
