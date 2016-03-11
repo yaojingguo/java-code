@@ -13,7 +13,7 @@ import org.junit.Test;
 
 public class ProducerUsage {
 
-  private static String topic = "apiTopic";
+  public static String topic = "apiTopic";
 
   private static KafkaProducer<String, String> createProducer() throws UnknownHostException {
     Properties config = new Properties();
@@ -27,7 +27,7 @@ public class ProducerUsage {
   @Test
   public void testSend() throws Exception {
     try (KafkaProducer<String, String> kp = createProducer();) {
-      ProducerRecord<String, String> record = new ProducerRecord<>(topic, "key1", "value1");
+      ProducerRecord<String, String> record = new ProducerRecord<>(topic, "key1", "value9");
       Future<RecordMetadata> future = kp.send(record);
       System.out.println("writting...");
       future.get();
