@@ -17,14 +17,14 @@
  
 package org.quartz.examples.example5;
 
+import java.util.Date;
+
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.PersistJobDataAfterExecution;
-
-import java.util.Date;
 
 /**
  * <p>

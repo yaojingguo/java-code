@@ -17,11 +17,13 @@
  
 package org.quartz.examples.example2;
 
-import static org.quartz.DateBuilder.futureDate;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobKey.jobKey;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.DateBuilder.*;
+import static org.quartz.JobBuilder.*;
+import static org.quartz.JobKey.*;
+import static org.quartz.SimpleScheduleBuilder.*;
+import static org.quartz.TriggerBuilder.*;
+
+import java.util.Date;
 
 import org.quartz.DateBuilder;
 import org.quartz.DateBuilder.IntervalUnit;
@@ -33,8 +35,6 @@ import org.quartz.SimpleTrigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Date;
 
 /**
  * This Example will demonstrate all of the basics of scheduling capabilities of Quartz using Simple Triggers.

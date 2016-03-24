@@ -17,10 +17,14 @@
  
 package org.quartz.examples.example8;
 
-import static org.quartz.DateBuilder.dateOf;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.DateBuilder.*;
+import static org.quartz.JobBuilder.*;
+import static org.quartz.SimpleScheduleBuilder.*;
+import static org.quartz.TriggerBuilder.*;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -32,10 +36,6 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.calendar.AnnualCalendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * This example will demonstrate how calendars can be used to exclude periods of time when scheduling should not take

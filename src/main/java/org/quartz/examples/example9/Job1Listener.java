@@ -17,8 +17,8 @@
  
 package org.quartz.examples.example9;
 
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.JobBuilder.*;
+import static org.quartz.TriggerBuilder.*;
 
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;

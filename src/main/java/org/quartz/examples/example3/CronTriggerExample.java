@@ -17,9 +17,11 @@
  
 package org.quartz.examples.example3;
 
-import static org.quartz.CronScheduleBuilder.cronSchedule;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.CronScheduleBuilder.*;
+import static org.quartz.JobBuilder.*;
+import static org.quartz.TriggerBuilder.*;
+
+import java.util.Date;
 
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
@@ -29,8 +31,6 @@ import org.quartz.SchedulerMetaData;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Date;
 
 /**
  * This Example will demonstrate all of the basics of scheduling capabilities of Quartz using Cron Triggers.

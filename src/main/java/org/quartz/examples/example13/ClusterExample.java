@@ -17,10 +17,10 @@
  
 package org.quartz.examples.example13;
 
-import static org.quartz.DateBuilder.futureDate;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.DateBuilder.*;
+import static org.quartz.JobBuilder.*;
+import static org.quartz.SimpleScheduleBuilder.*;
+import static org.quartz.TriggerBuilder.*;
 
 import org.quartz.DateBuilder.IntervalUnit;
 import org.quartz.JobDetail;

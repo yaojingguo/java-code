@@ -17,10 +17,12 @@
  
 package org.quartz.examples.example4;
 
-import static org.quartz.DateBuilder.nextGivenSecondDate;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.DateBuilder.*;
+import static org.quartz.JobBuilder.*;
+import static org.quartz.SimpleScheduleBuilder.*;
+import static org.quartz.TriggerBuilder.*;
+
+import java.util.Date;
 
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -30,8 +32,6 @@ import org.quartz.SimpleTrigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Date;
 
 /**
  * This Example will demonstrate how job parameters can be passed into jobs and how state can be maintained

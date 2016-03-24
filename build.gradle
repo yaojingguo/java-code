@@ -23,12 +23,20 @@ dependencies {
   
   compile "org.quartz-scheduler:quartz:2.2.2"
   
+  compile 'io.netty:netty-all:4.0.34.Final'
+    
   compile "log4j:log4j:1.2.16"
   compile "org.slf4j:slf4j-log4j12:1.7.7"
   compile "org.slf4j:slf4j-api:1.7.7"
   
   compile "org.apache.kafka:kafka-clients:0.9.0.1"
   compile "org.apache.kafka:connect-api:0.9.0.1"
+  compile "org.apache.kafka:connect-file:0.9.0.1"
+  compile "org.apache.kafka:connect-json:0.9.0.1"
+  
+  compile 'com.fasterxml.jackson.core:jackson-core:2.7.0'
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
+  compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.0'
 }
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
