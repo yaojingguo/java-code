@@ -1,4 +1,4 @@
-package netty;
+package netty.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
 
@@ -33,8 +33,7 @@ public class DiscardServer {
            ch.pipeline().addLast(new DiscardServerHandler());
          }
        })
-       .option(ChannelOption.SO_BACKLOG, 128)
-       // (5)
+       .option(ChannelOption.SO_BACKLOG, 128) // (5)
        .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
 
       // Bind and start to accept incoming connections.
