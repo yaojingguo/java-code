@@ -8,7 +8,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import netty.echo.DiscardServer;
 
 public class TimeServer {
 
@@ -54,6 +53,6 @@ public class TimeServer {
     } else {
       port = 8080;
     }
-    new DiscardServer(port).run();
+    new TimeServer(port).run();
   }
 }
