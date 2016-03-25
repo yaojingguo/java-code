@@ -7,6 +7,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 public class TimeEncoder extends MessageToByteEncoder<UnixTime> {
   @Override
   protected void encode(ChannelHandlerContext ctx, UnixTime msg, ByteBuf out) {
-      out.writeInt((int)msg.value());
+    System.out.printf("time: %ld\n", msg.value());
+    out.writeInt((int) msg.value());
   }
 }
