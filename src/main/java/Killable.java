@@ -1,8 +1,9 @@
 /*
 
 SIGINT        2       Term    Interrupt from keyboard
+SIGTERM      15       Term    Termination signal (default for kill command)
+
 SIGKILL       9       Term    Kill signal
-SIGTERM      15       Term    Termination signal
 
 ShutdownHook can catch SIGINT and SIGTERM. CTRL-C send SIGINT signal.
 */
