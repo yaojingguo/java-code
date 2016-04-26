@@ -10,6 +10,7 @@ public class GenericTest {
 //    private Node[] next = new Node<E>[R];
     private Node[] next = new Node[R];
   }
+  
   @Test
   public void test() {
     

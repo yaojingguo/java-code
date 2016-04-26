@@ -24,10 +24,25 @@ public class StringTest {
     String msg = String.format("1: %s, 2: %s, 3: %s", "one", "two", list);
     System.out.println(msg);
   }
-
   
   @Test
   public void testCharsetName() {
     assertThat(StandardCharsets.UTF_8.name()).isEqualTo("UTF-8");
+  }
+  
+  @Test
+  public void testList() {
+    List<Character> ls = new ArrayList<>();
+    ls.add('a');
+    ls.add('b');
+    System.out.printf(listToString(ls));
+  }
+  
+  
+  private String listToString(List<Character> ls) {
+    StringBuilder sb = new StringBuilder();
+    for (char c: ls)
+      sb.append(c);
+    return sb.toString();
   }
 }
