@@ -38,6 +38,8 @@ dependencies {
   compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
   compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.0'
   
+  compile 'org.jasypt:jasypt:1.9.2'
+  
   // compile 'ch.qos.logback:logback-classic:1.1.7'
   // compile 'ch.qos.logback:logback-core:1.1.7'
   // compile 'org.slf4j:slf4j-api:1.7.21'
