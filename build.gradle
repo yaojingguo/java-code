@@ -44,10 +44,6 @@ dependencies {
   compile 'com.netflix.zuul:zuul-core:1.2.0'
 
   // compile 'org.apache.phoenix:phoenix-server:4.7.0-HBase-1.1'
-  
-  // compile 'ch.qos.logback:logback-classic:1.1.7'
-  // compile 'ch.qos.logback:logback-core:1.1.7'
-  // compile 'org.slf4j:slf4j-api:1.7.21'
 }
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
