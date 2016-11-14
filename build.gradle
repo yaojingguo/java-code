@@ -43,7 +43,7 @@ dependencies {
   compile 'com.netflix.hystrix:hystrix-core:1.5.3'
   compile 'com.netflix.zuul:zuul-core:1.2.0'
 
-  // compile 'org.apache.phoenix:phoenix-server:4.7.0-HBase-1.1'
+  compile 'org.apache.phoenix:phoenix-server:4.7.0-HBase-1.1'
 }
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
