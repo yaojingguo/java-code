@@ -1,55 +1,27 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 repositories {
   mavenLocal()
-  maven {
-    url "http://maven.oschina.net/content/groups/public/"
-  }
   mavenCentral()
   jcenter()
 }
 
 dependencies {
-  compile 'com.google.guava:guava:18.0'
   compile 'org.javassist:javassist:3.20.0-GA'
+  compile 'io.netty:netty-all:4.1.38.Final'
+  compile "org.apache.kafka:kafka-clients:2.3.0"
   compile 'redis.clients:jedis:2.7.3'
   compile 'io.grpc:grpc-all:0.9.0'
   compile 'com.lmax:disruptor:3.3.2'
-   
-  testCompile 'junit:junit:4.12'
-  testCompile 'com.google.truth:truth:0.27'
-  testCompile 'org.unitils:unitils-core:3.4.2'
-  
-  compile "org.quartz-scheduler:quartz:2.2.2"
-  
-  compile 'io.netty:netty-all:4.0.35.Final'
-    
+  testCompile "org.junit.jupiter:junit-jupiter-api:5.2.0"
   compile "log4j:log4j:1.2.16"
   compile "org.slf4j:slf4j-log4j12:1.7.7"
   compile "org.slf4j:slf4j-api:1.7.7"
-  
-  compile "org.apache.kafka:kafka-clients:0.9.0.1"
-  compile "org.apache.kafka:connect-api:0.9.0.1"
-  compile "org.apache.kafka:connect-file:0.9.0.1"
-  compile "org.apache.kafka:connect-json:0.9.0.1"
-  
-  compile 'com.fasterxml.jackson.core:jackson-core:2.7.0'
-  compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
-  compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.0'
-  
-  compile 'org.jasypt:jasypt:1.9.2'
-
-  compile 'com.netflix.hystrix:hystrix-core:1.5.3'
-  compile 'com.netflix.zuul:zuul-core:1.2.0'
-
-  compile 'org.apache.phoenix:phoenix-server:4.7.0-HBase-1.1'
+  testCompile "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+  testCompile "com.google.truth:truth:0.41" 
 }
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
-
-eclipse.classpath {
-  defaultOutputDir = file('build-eclipse')
-}
 
 test.testLogging.showStandardStreams = true
