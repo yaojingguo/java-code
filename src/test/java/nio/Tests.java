@@ -1,5 +1,10 @@
 package nio;
 
+
+
+import io.netty.buffer.ByteBuf;
+import org.junit.Test;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -10,10 +15,10 @@ import java.nio.file.StandardOpenOption;
 
 
 
-
 public class Tests {
 
-  public void testFileChannel() throws IOException {
+  @Test
+  public void fileChannel() throws IOException {
     Path path = Paths.get("file.txt");
     FileChannel fileChannel = FileChannel.open(path, StandardOpenOption.READ, StandardOpenOption.WRITE);
     System.out.println(fileChannel.position());
@@ -26,5 +31,14 @@ public class Tests {
     System.out.println(fileChannel.position());
 
     System.out.println(fileChannel.size());
+  }
+
+  @Test
+  public void buffer() {
+    ByteBuffer fill = ByteBuffer.allocateDirect(1);
+
+    System.out.println(fill.position(0));
+    System.out.println("content: " + fill.get());
+    System.out.println("remaining: " + fill.remaining());
   }
 }
