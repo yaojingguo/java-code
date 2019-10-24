@@ -3,6 +3,7 @@ package language;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.junit.Test;
@@ -33,6 +34,21 @@ public class MapTest {
     map.put("one", null);
     map.put("two", null);
     System.out.println(map);
+  }
+
+  @Test
+  public void foo() {
+    Map<String, Integer> map = new HashMap<>();
+    map.put("one", 1);
+    map.put("two", 2);
+    map.put("three", 3);
+    System.out.printf("map: %s\n", map);
+
+    Set<String> keys = map.keySet();
+    keys.remove("one");
+
+    System.out.printf("set: %s\n", keys);
+    System.out.printf("map: %s\n", map);
   }
   
   void func() {

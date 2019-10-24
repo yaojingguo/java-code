@@ -1,18 +1,16 @@
 package nio;
 
 
-
-import io.netty.buffer.ByteBuf;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import sun.nio.ch.DefaultSelectorProvider;
 
 
 public class Tests {
@@ -40,5 +38,10 @@ public class Tests {
     System.out.println(fill.position(0));
     System.out.println("content: " + fill.get());
     System.out.println("remaining: " + fill.remaining());
+  }
+
+  @Test
+  public void provider() {
+    System.out.println(DefaultSelectorProvider.create().getClass().getName());
   }
 }
