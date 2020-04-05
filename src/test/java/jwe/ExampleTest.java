@@ -59,14 +59,21 @@ public class ExampleTest {
     assertThat(base64Header + "." + base64Payload + "." + base64Sign).isEqualTo(expectedJws);
   }
 
+  // TODO(yaojingguo): complete this
   @Test
   public void testRFC7919A_1() throws Exception {
+    // A.2.1.  JOSE Header
+    String header = "{\"alg\":\"RSA1_5\",\"enc\":\"A128CBC-HS256\"}";
+    assertThat(Base64URL.encode(header).toString()).isEqualTo("eyJhbGciOiJSU0ExXzUiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0");
+
+    // A.2.2.  Content Encryption Key (CEK)
     int[] cekInts = {
       4, 211, 31, 197, 84, 157, 252, 254, 11, 100, 157, 250, 63, 170, 106, 206, 107, 124, 212, 45,
       111, 107, 9, 219, 200, 177, 0, 240, 143, 156, 44, 207
     };
     byte[] cek = toBytes(cekInts);
 
+    // A.2.3.  Key Encryption
 //    String base64e = "AQAB";
 //    String base64d =
 //        "VFCWOqXr8nvZNyaaJLXdnNPXZKRaWCjkU5Q2egQQpTBMwhprMzWzpR8Sxq"
