@@ -1,5 +1,6 @@
 package jwe;
 
+import com.google.common.primitives.Bytes;
 import com.nimbusds.jose.util.Base64;
 import com.nimbusds.jose.util.Base64URL;
 import org.junit.Test;
@@ -8,6 +9,8 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import java.security.Key;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -42,8 +45,7 @@ public class ExampleTest {
     mac.init(key);
     byte[] sign = mac.doFinal(data.getBytes());
     String base64Sign = Base64URL.encode(sign).toString();
-    assertThat(base64Sign)
-        .isEqualTo("dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk");
+    assertThat(base64Sign).isEqualTo("dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk");
 
     String expectedJws =
         "eyJ0eXAiOiJKV1QiLA0KICJhbGciOiJIUzI1NiJ9."
@@ -54,14 +56,39 @@ public class ExampleTest {
 
   @Test
   public void testRFC7919A_1() {
+    int[] cekInts = {
+      4, 211, 31, 197, 84, 157, 252, 254, 11, 100, 157, 250, 63, 170, 106, 206, 107, 124, 212, 45,
+      111, 107, 9, 219, 200, 177, 0, 240, 143, 156, 44, 207
+    };
+    byte[] cek = toBytes(cekInts);
 
+  }
+
+  private byte[] toBytes(int[] ints) {
+    List<Byte> ls = new ArrayList<>();
+    for (int i: ints) {
+      ls.add((byte) i);
+    }
+    return Bytes.toArray(ls);
+  }
+
+  private void infoArray(byte[] bytes) {
+    StringBuilder sb = new StringBuilder("[");
+    for (int i = 0; i < bytes.length; i++) {
+      if (i != 0) {
+        sb.append(", ");
+      }
+      sb.append(String.format("%d", 0xff & bytes[i]));
+    }
+    sb.append("]");
+    System.out.printf("array: %s", sb.toString());
+
+    String base_e = "";
   }
 
   @Test
-  public void testRFC7919A_2() {
+  public void testRFC7919A_2() {}
 
-  }
-  
   private String toAsciis(String s) {
     StringBuilder sb = new StringBuilder("[");
     for (int i = 0; i < s.length(); i++) {
@@ -73,5 +100,4 @@ public class ExampleTest {
     sb.append("]");
     return sb.toString();
   }
-
 }
