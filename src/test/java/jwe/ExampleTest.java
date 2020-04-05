@@ -8,7 +8,12 @@ import org.junit.Test;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+import java.math.BigInteger;
 import java.security.Key;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.KeySpec;
+import java.security.spec.RSAPublicKeySpec;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,18 +60,37 @@ public class ExampleTest {
   }
 
   @Test
-  public void testRFC7919A_1() {
+  public void testRFC7919A_1() throws Exception {
     int[] cekInts = {
       4, 211, 31, 197, 84, 157, 252, 254, 11, 100, 157, 250, 63, 170, 106, 206, 107, 124, 212, 45,
       111, 107, 9, 219, 200, 177, 0, 240, 143, 156, 44, 207
     };
     byte[] cek = toBytes(cekInts);
 
+//    String base64e = "AQAB";
+//    String base64d =
+//        "VFCWOqXr8nvZNyaaJLXdnNPXZKRaWCjkU5Q2egQQpTBMwhprMzWzpR8Sxq"
+//            + "1OPThh_J6MUD8Z35wky9b8eEO0pwNS8xlh1lOFRRBoNqDIKVOku0aZb-ry"
+//            + "nq8cxjDTLZQ6Fz7jSjR1Klop-YKaUHc9GsEofQqYruPhzSA-QgajZGPbE_"
+//            + "0ZaVDJHfyd7UUBUKunFMScbflYAAOYJqVIVwaYR5zWEEceUjNnTNo_CVSj"
+//            + "-VvXLO5VZfCUAVLgW4dpf1SrtZjSt34YLsRarSb127reG_DUwg9Ch-Kyvj"
+//            + "T1SkHgUWRVGcyly7uvVGRSDwsXypdrNinPA4jlhoNdizK2zF2CWQ";
+//    byte[] e = new Base64(base64e).decode();
+//    byte[] d = new Base64(base64d).decode();
+//    KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+//    KeySpec keySpec = new RSAPublicKeySpec(new BigInteger(e), new BigInteger(d));
+//    PublicKey publicKey = keyFactory.generatePublic(keySpec);
+
+    // A.2.4.  Initialization Vector
+    int[] ivInts = {3, 22, 60, 12, 43, 67, 104, 105, 108, 108, 105, 99, 111, 116, 104, 101};
+    byte[] iv = toBytes(ivInts);
+    assertThat(Base64URL.encode(iv).toString()).isEqualTo("AxY8DCtDaGlsbGljb3RoZQ");
+
   }
 
   private byte[] toBytes(int[] ints) {
     List<Byte> ls = new ArrayList<>();
-    for (int i: ints) {
+    for (int i : ints) {
       ls.add((byte) i);
     }
     return Bytes.toArray(ls);
@@ -82,8 +106,6 @@ public class ExampleTest {
     }
     sb.append("]");
     System.out.printf("array: %s", sb.toString());
-
-    String base_e = "";
   }
 
   @Test
