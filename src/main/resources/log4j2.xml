@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+  <Properties>
+    <Property name="log-path">./logs</Property>
+  </Properties>
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{ISO8601} %-5p [%t] %c{2}: %m%n" />
+    </Console>
+    <RollingFile name="RollingFile" fileName="${log-path}/rainbow.log"
+      filePattern="${log-path}/rainbow-%d{yyyy-MM-dd}-%i.log">
+      <PatternLayout>
+        <pattern>%d{ISO8601} %-5p [%t] %c{2}: %m%n</pattern>
+      </PatternLayout>
+      <Policies>
+         <OnStartupTriggeringPolicy />
+         <SizeBasedTriggeringPolicy size="250 MB" />
+      </Policies>
+      <DefaultRolloverStrategy max="4" />
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="Console" />
+      <!--  <AppenderRef ref="RollingFile" />  -->
+    </Root>
+
+    <!-- 
+      Change level to debug to monitor Spring beans initializations.
+     -->
+    <Logger name="org.springframework" level="error" additivity="false"> 
+      <AppenderRef ref="Console" />
+    </Logger>
+    
+    <!-- 
+      The following is for debugging the mapping from REST requests to rest
+      controllers. There is no guides for which loggers should be configured
+      for this purpose. So we just list loggers which will emit some debug
+      messages here when something is wrong with the mapping.
+     -->
+    <Logger name="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver" 
+            level="error"
+            additivity="false"> 
+      <AppenderRef ref="Console" />
+    </Logger>  
+    <Logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" 
+            level="error"
+            additivity="false"> 
+      <AppenderRef ref="Console" />
+    </Logger>  
+    <Logger name="org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver" 
+            level="error"
+            additivity="false"> 
+      <AppenderRef ref="Console" />
+    </Logger>  
+    
+    <!-- 
+      Change level to debug to log MyBatis SQL statements. name is mapper 
+      namespace.
+     -->
+    <Logger name="Dealer" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>     
+    <Logger name="FreightHouse" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+    <Logger name="User" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger> 
+     <Logger name="WhiteIP" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>    
+     <Logger name="Item" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>    
+     <Logger name="Stock" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>  
+     <Logger name="StockPriceHistory" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>   
+    <Logger name="StockQuantityHistory" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger> 
+    <Logger name="StockUnitCountHistory" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>     
+     <Logger name="Producer" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>  
+     <Logger name="LineSpec" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>            
+    <Logger name="PromotionSlot" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger> 
+    <Logger name="Campaign" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger> 
+            
+    <!--
+      MISC
+     -->
+    <Logger name="com.rainbow.dao.VerificationCodeMapper" level="error" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+    <Logger name="com.rainbow.web.rest.controller.FreightHouseController" 
+            level="error" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>    
+    <Logger name="com.rainbow.web.rest.controller.UserController" 
+            level="error" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>    
+    <Logger name="com.rainbow.web.rest.controller.DealerController" 
+            level="error" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>   
+    <Logger name="com.rainbow.web.rest.controller.PromotionSlotController" 
+            level="error" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>   
+    <Logger name="com.rainbow.dao.DealerDao" 
+            level="error" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>  
+    <Logger name="com.rainbow.dao.FreightHouseDao" 
+            level="error" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>  
+    <Logger name="com.rainbow.dao.PromotionSlotDao" 
+            level="error" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>          
+        
+    <Logger name="com.rainbow.web.www.controller.StockController" 
+            level="info" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>  
+
+    <Logger name="com.rainbow.web.www.controller.admin.AdminLoginController" 
+            level="error" 
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>  
+    <Logger name="com.rainbow.web.www.controller.user.UserLoginController" 
+            level="info"
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger> 
+    <Logger name="com.rainbow.IPLocationFilter" 
+            level="error"
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+    <Logger name="com.rainbow.IPChecker" 
+            level="error"
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>  
+    <Logger name="com.rainbow.service.ExcelService" 
+            level="error"
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger> 
+    <Logger name="com.rainbow.service.DealerAuthorizer" 
+            level="error"
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger> 
+    <Logger name="com.rainbow.web.rest.controller.FileUploadController" 
+            level="error"
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>           
+    <Logger name="com.rainbow.web.rest.controller.StockController" 
+            level="error"
+            additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>           
+    
+  </Loggers>
+</Configuration>
